@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>MonthView {{numbersDaysInPriorMonth}} - {{numbersDaysInCurrentMonth}}</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  Month {{currentMonth}}
+  <br>
+  First {{firstDay}}
+  <br>
+  Array {{Month}}
+
+  <ion-grid>
+    <ion-row  *ngFor="let week of Month">
+      {{week}}
+      <ion-col class="cell-class" *ngFor="let day of week">
+        <div>
+          {{day}}
+        </div>
+      </ion-col>
+    </ion-row>
+    <!--
+    <ion-row  *ngFor="let week in currentMonth">
+      {{week}}
+      <ion-col class="cell-class" *ngFor="let day in week">
+        <div>
+          {{day}} - {{week}}
+        </div>
+      </ion-col>
+    </ion-row>
+    -->
+  </ion-grid>
+
+</ion-content>
