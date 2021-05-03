@@ -1,24 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>MonthView {{numbersDaysInPriorMonth}} - {{numbersDaysInCurrentMonth}}</ion-title>
+    <ion-title>{{monthName}}</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+    <br>
   <ion-grid>
-    <ion-row *ngFor="let week of monthData">
-      <ion-col class="cell-current" *ngFor="let day of week">
-        <div>
-          {{day.Date}}
-        </div>
-      </ion-col>
-    </ion-row>
-    <br>
-    <br>
-    <ion-row *ngFor="let week of monthData">
+  <ion-row *ngFor="let week of monthData">
       <ion-col *ngFor="let day of week">
-        <div class="cell-current" *ngIf="day.CurrentMonth" (click)="ShowDay(day.Date)">
+        <div class="cell-current" *ngIf="day.CurrentMonth" (click)="ShowDay(day.Key)">
           {{day.Date}}
         </div>
         <div class="cell-border" *ngIf="!day.CurrentMonth">

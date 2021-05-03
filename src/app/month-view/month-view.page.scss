@@ -1,15 +1,19 @@
+ion-col {
+  padding: 0;
+}
+
 .cell-current {
   border-color: black; 
   border-width: .01em; 
   border-style:solid; margin-bottom : -1px;
-  background-color: lightgrey
+  background-color: lightgrey;
 }
 
 .cell-border {
   border-color: black; 
   border-width: .01em; 
   border-style:solid; margin-bottom : -1px;
-  background-color: white
+  background-color: white;
 }
 
   .current-month {
