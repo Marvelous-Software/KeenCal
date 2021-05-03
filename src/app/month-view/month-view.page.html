@@ -6,31 +6,26 @@
 
 <ion-content>
 
-  Month {{currentMonth}}
-  <br>
-  First {{firstDay}}
-  <br>
-  Array {{Month}}
-
   <ion-grid>
-    <ion-row  *ngFor="let week of Month">
-      {{week}}
-      <ion-col class="cell-class" *ngFor="let day of week">
+    <ion-row *ngFor="let week of monthData">
+      <ion-col class="cell-current" *ngFor="let day of week">
         <div>
-          {{day}}
+          {{day.Date}}
         </div>
       </ion-col>
     </ion-row>
-    <!--
-    <ion-row  *ngFor="let week in currentMonth">
-      {{week}}
-      <ion-col class="cell-class" *ngFor="let day in week">
-        <div>
-          {{day}} - {{week}}
+    <br>
+    <br>
+    <ion-row *ngFor="let week of monthData">
+      <ion-col *ngFor="let day of week">
+        <div class="cell-current" *ngIf="day.CurrentMonth" (click)="ShowDay(day.Date)">
+          {{day.Date}}
+        </div>
+        <div class="cell-border" *ngIf="!day.CurrentMonth">
+          {{day.Date}}
         </div>
       </ion-col>
     </ion-row>
-    -->
   </ion-grid>
 
 </ion-content>

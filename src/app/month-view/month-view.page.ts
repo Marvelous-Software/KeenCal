@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
+import { Day } from '../models/day';
+
 @Component({
   selector: 'app-month-view',
   templateUrl: './month-view.page.html',
@@ -17,7 +19,7 @@ export class MonthViewPage implements OnInit {
   currentMonth = this.today.getMonth() + 1; //getMonth retuens 0-11 but the date constructor requires 1-12
   firstDate = new Date(this.today.getFullYear(), this.today.getMonth(), 1);//1st day current month
   firstDay = this.firstDate.getDay(); //0-6
-  monthView = this.Month();
+  monthData = this.MonthBuild();
 
   constructor() {   }
 
@@ -25,34 +27,60 @@ export class MonthViewPage implements OnInit {
     
   }
 
-  Month() {
+  ShowDay(date: number) {
+
+    console.log(date)
+    
+  }
+
+  MonthBuild() {
 
     var r;
-    var days, daysInWeek = 0;
+    var days = 0;
+    var daysInWeek = 0;
     var week = [];
     var month = [];
+    var dayObj: Day
 
-    console.log("Month enter");
+    
     for (r=0; r<this.firstDay; r++){
-      days++;
       daysInWeek++;
-      //week.push(r);
-      week.push(this.numbersDaysInPriorMonth-this.firstDay+r)
+      dayObj = new Day()
+      dayObj.Date = this.numbersDaysInPriorMonth-this.firstDay+r+1
+      dayObj.Format = "cell-border"
+      dayObj.CurrentMonth = false
+      week.push(dayObj)//days are 0-6 to offset we need 1-7
     }
-    console.log("Month mid");
+  
     while (days < this.numbersDaysInCurrentMonth) {
-
+  
       days++;
       daysInWeek++;
-      week.push(days);
-
+      dayObj = new Day()
+      dayObj.Date = days
+      dayObj.Format = "cell-current"
+      dayObj.CurrentMonth = true
+      week.push(dayObj);
+  
       if (daysInWeek == 7){
         daysInWeek = 0;
         month.push(week);
         week = [];
       }
     }
-    
+  
+    days = 0;
+    while (daysInWeek < 7) {
+      days++;
+      daysInWeek++;
+      dayObj = new Day()
+      dayObj.Date = days
+      dayObj.Format = "cell-border"
+      dayObj.CurrentMonth = false
+      week.push(dayObj);
+    }
+  
+    month.push(week);
     console.log(month);
     return month;
   }
