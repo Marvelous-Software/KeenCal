@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chuck Norris Joke Finder</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid>
+
+    <ion-row>
+      <ion-col space='12'>
+        <div>
+          <ion-button (click)='getJoke()'>
+            Get a Chuck joke
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col space='12'>
+        <div>
+          {{joke.value}}
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col space='12'>
+        <div>
+          <ion-button (click)='getCategories()'>
+            Get Chuck joke categories
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <ion-row  *ngFor="let item of categories">
+      <ion-col>
+        <div>
+          <ion-button (click)='getJokeFromCategory(item)'>
+            {{item}}
+          </ion-button>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

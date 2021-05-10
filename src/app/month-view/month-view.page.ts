@@ -5,12 +5,34 @@ import { MonthViewPageRoutingModule } from './month-view-routing.module';
 
 import { Router, NavigationExtras } from "@angular/router"
 
+
+import { Geolocation } from '@ionic-native/geolocation/ngx';
+import { NativeGeocoder, NativeGeocoderResult } from '@ionic-native/native-geocoder/ngx';
+
+//ionic cordova resources android
+//ionic cordova platform add android
+//ionic cordova build android
+//ionic cordova run android -l
+
+//npm run build
+//npx cap sync
+//npx cap open android
+//npx cap add android
+//ionic cap sync
+//
+//ionic cordova platform add browser
+//ionic cordova run browser
+
 @Component({
   selector: 'app-month-view',
   templateUrl: './month-view.page.html',
   styleUrls: ['./month-view.page.scss'],
 })
 export class MonthViewPage implements OnInit {
+
+  lat: any;
+  long: any;
+  address: any = "N/A";
 
   monthNames = ["January", "February", "March", "April", "May", "June",
     "July", "August", "September", "October", "November", "December"
@@ -27,7 +49,8 @@ export class MonthViewPage implements OnInit {
   monthData = this.MonthBuild()
   monthName = this.monthNames[this.currentMonth]
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,  private geolocation: Geolocation,
+    private geocoder: NativeGeocoder) { }
 
   ngOnInit() {
 
@@ -113,4 +136,34 @@ export class MonthViewPage implements OnInit {
     console.log(month);
     return month;
   }
+
+
+  async getPosition() {
+    await this.geolocation.getCurrentPosition(
+      {
+        enableHighAccuracy: true,
+        timeout: 20000,
+        maximumAge: 0
+      }
+    ).then((resp) => {
+      this.lat = resp.coords.latitude;
+      this.long = resp.coords.longitude;
+      this.getAddress(this.lat, this.long);
+    }).catch((error) => {
+      console.log('Error getting location', error);
+    });
+  }
+
+  getAddress(lattitude, longtitude) {
+
+    this.geocoder.reverseGeocode(
+      lattitude,
+      longtitude,
+      { useLocale: true, maxResults: 5 }
+    ).then((res: NativeGeocoderResult[]) => {
+      this.address = res[0].locality
+    }
+    )
+  }
+
 }

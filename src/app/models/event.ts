@@ -1,8 +1,11 @@
 export class Event {
 
-    ID: number
-    DateTimeStart: Date
-    DateTimeEnd: Date
-    Description: string
-    
+    id: number
+    description: string
+    start: string
+    stop: string
+    location: string
+    recurring: string
+    ringer_disable: number
+
 }

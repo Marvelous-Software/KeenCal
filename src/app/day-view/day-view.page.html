@@ -6,15 +6,19 @@
 
 <ion-content>
 
-  <ion-card *ngFor="let event of [1, 2, 3]">
+  <ion-card *ngFor="let event of Data">
     <ion-card-header>
       <ion-card-title>
-        Time {{event}}
+        {{event.Description}}
       </ion-card-title>
     </ion-card-header>
     <ion-card-content>
-      Yadda, Yadda, Yadda
+      Start: {{event.Start}}
+      <br>
+      End: {{event.Stop}}
     </ion-card-content>
   </ion-card>
+
+  <ion-button (click)="Back()"> Back </ion-button>
 
 </ion-content>

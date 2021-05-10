@@ -23,6 +23,10 @@ const routes: Routes = [
     path: 'event-view',
     loadChildren: () => import('./event-view/event-view.module').then( m => m.EventViewPageModule)
   },
+  {
+    path: 'joke',
+    loadChildren: () => import('./joke/joke.module').then( m => m.JokePageModule)
+  },
 ];
 
 @NgModule({

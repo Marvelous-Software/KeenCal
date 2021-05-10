@@ -5,19 +5,46 @@
 </ion-header>
 
 <ion-content>
-
-    <br>
+  <br />
   <ion-grid>
-  <ion-row *ngFor="let week of monthData">
+    <ion-row *ngFor="let week of monthData">
       <ion-col *ngFor="let day of week">
-        <div class="cell-current" *ngIf="day.CurrentMonth" (click)="ShowDay(day.Key)">
+        <div
+          class="cell-current"
+          *ngIf="day.CurrentMonth"
+          (click)="ShowDay(day.Key)"
+        >
           {{day.Date}}
         </div>
-        <div class="cell-border" *ngIf="!day.CurrentMonth">
-          {{day.Date}}
-        </div>
+        <div class="cell-border" *ngIf="!day.CurrentMonth">{{day.Date}}</div>
       </ion-col>
     </ion-row>
   </ion-grid>
+
+  <ion-item href="day-view">
+    <ion-label>Day</ion-label>
+  </ion-item>
+
+  <ion-row>
+    <ion-col>
+      <ion-button (click)="getPosition()"> Get Position </ion-button>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col> Latitude: </ion-col>
+    <ion-col> {{lat}} </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col> Longtitude: </ion-col>
+    <ion-col> {{long}} </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col> Address: </ion-col>
+    <ion-col> {{address}} </ion-col>
+  </ion-row>
+
+  <ion-item href="joke">
+    <ion-label>Tell me a joke!</ion-label>
+  </ion-item>
 
 </ion-content>
