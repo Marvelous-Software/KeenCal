@@ -6,13 +6,13 @@ import { Component } from '@angular/core';
   styleUrls: ['app.component.scss'],
 })
 export class AppComponent {
- 
+
   navigate: any;
 
   constructor() {
 
     this.sideMenu();
-    
+
   }
 
 
@@ -21,28 +21,13 @@ export class AppComponent {
     this.navigate = [
       {
         title : "Home",
-        url : "/tabs",
+        url : "/month-view",
         icon : "home"
       },
       {
-        title : "About Us",
-        url : "/aboutus",
+        title : "Joke",
+        url : "/joke",
         icon : "people-circle"
-      },
-      {
-        title : "Contacts",
-        url : "/contact",
-        icon : "paper-plane"
-      },
-      {
-        title : "Rest Demo",
-        url : "/rest-demo",
-        icon : "settings"
-      },
-      {
-        title : "Weather",
-        url : "/weather",
-        icon : "settings"
       }
     ]
   }

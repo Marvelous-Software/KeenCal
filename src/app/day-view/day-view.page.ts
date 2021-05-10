@@ -15,6 +15,9 @@ export class DayViewPage implements OnInit {
   constructor(private router: Router, private db: DbService) {}
 
   ngOnInit() {
+
+    console.log("Pre");
+
     this.db.dbState().subscribe((res) => {
       if (res) {
         this.db.fetchEvents().subscribe((item) => {
@@ -22,6 +25,9 @@ export class DayViewPage implements OnInit {
         });
       }
     });
+
+    console.log("Post " + this.Data);
+
   }
 
   Back() {

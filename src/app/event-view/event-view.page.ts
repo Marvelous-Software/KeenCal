@@ -52,6 +52,9 @@ export class EventViewPage implements OnInit {
   }
 
   doSave() {
+
+    console.log("Pre " + this.date);
+
     this.db
       .addEvent(
         this.date,
@@ -66,7 +69,6 @@ export class EventViewPage implements OnInit {
 
       this.router.navigate(['month-view']);
 
-    console.log(this.date);
-    console.log(this.event.Description);
+    console.log("Post " + this.event.Description);
   }
 }
